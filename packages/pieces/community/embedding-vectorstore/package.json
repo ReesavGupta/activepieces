@@ -1,0 +1,8 @@
+{
+  "name": "@activepieces/piece-embedding-vectorstore",
+  "version": "0.0.1",
+  "dependencies": {
+    "@qdrant/js-client-rest": "^1.14.0",
+    "openai": "^4.98.0"
+  }
+}
