@@ -528,6 +528,7 @@
       "@activepieces/piece-odoo": [
         "packages/pieces/community/odoo/src/index.ts"
       ],
+      "@activepieces/piece-omx": ["packages/pieces/community/omx/src/index.ts"],
       "@activepieces/piece-onfleet": [
         "packages/pieces/community/onfleet/src/index.ts"
       ],

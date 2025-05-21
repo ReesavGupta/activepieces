@@ -10,6 +10,14 @@ export const test = createPiece({
         displayName: 'Auth Token',
         required: true,
       }),
+      rise_csrf_cookie: PieceAuth.SecretText({
+        displayName: 'Auth Token',
+        required: true,
+      }),
+      ci_session: PieceAuth.SecretText({
+        displayName: 'Auth Token',
+        required: true,
+      }),
     },
   }),
   minimumSupportedRelease: '0.36.1',
@@ -18,5 +26,3 @@ export const test = createPiece({
   actions: [createPipeline, listAllProjects, createProject],
   triggers: [],
 });
-
-// this is not working we need to fix this and also see why the req is not going through.

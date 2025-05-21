@@ -154,25 +154,43 @@ export const createProject = createAction({
       const price = context.propsValue['price'] as string;
       const client_id = context.propsValue['client_id'] as string;
 
-      const authtoken = context.auth as { authtoken: string };
+      const { rise_csrf_cookie, ci_session, authtoken } = context.auth as {
+        rise_csrf_cookie: string;
+        ci_session: string;
+        authtoken: string;
+      };
+
+      const body = new URLSearchParams({
+        title,
+        start_date,
+        description,
+        deadline,
+        price,
+        client_id: String(client_id),
+      });
+
+      console.log(
+        `\n\n\n\n\n\n\n\n\n\nthis is the request body:`,
+        body.toString(),
+        '\n\n\n\n\n\n\n\n',
+        'this si ci session:',
+        ci_session,
+        'this is csrf:',
+        rise_csrf_cookie,
+        '\n\n\n\n\n\n\n\n'
+      );
 
       const response = await fetch(
-        'http://darkgrey-gnu-475203.hostingersite.com/index.php/api/projects',
+        'http://darkgrey-gnu-475203.hostingersite.com/index.php/projects/save',
         {
           method: 'POST',
           headers: {
             Accept: 'application/json',
-            'Content-Type': 'application/json',
-            authtoken: String(authtoken),
+            'Content-Type': 'application/x-www-form-urlencoded',
+            cookie: `rise_csrf_cookie=${rise_csrf_cookie}; ci_session=${ci_session}`,
+            // authtoken: authtoken,
           },
-          body: JSON.stringify({
-            title,
-            start_date,
-            description,
-            deadline,
-            price,
-            client_id,
-          }),
+          body: body.toString(),
         }
       );
 
